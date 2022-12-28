@@ -1,0 +1,29 @@
+default: &default
+  system_name: "WEBHOOK REDMINE"
+  use_mailcatcher_server: false
+  email_to_test: "diiegopaiivam@gmail.com"
+  sdc_conn: sdc_conn
+
+  webservices: &webservices
+    redmine_api: &redmine_api
+      host: http://129.146.125.163:3001/
+      password: Rails.application.credentials[:default][:redmine_api][:password]
+        
+development:
+  webservices:
+    <<: *webservices
+
+test:
+  webservices:
+    <<: *webservices
+  <<: *default
+
+production:
+  use_mailcatcher_server: false
+  <<: *default
+  sdc_conn: sdc_prod
+  mailer:
+    <<: *mailer
+    address: "mx.tjce.jus.br"
+  webservices:
+    <<: *webservices

@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  identifier: MyString
+  description: MyText
+  is_public: false
+  inherit_members: false
+  trackers_ids: MyString
+  enabled_module_names: MyString
+
+two:
+  name: MyString
+  identifier: MyString
+  description: MyText
+  is_public: false
+  inherit_members: false
+  trackers_ids: MyString
+  enabled_module_names: MyString
