@@ -2,9 +2,9 @@ module Api
   module V1
     class ProjectsController < ApplicationController
       def create
-        @project = Project.new(@project_params)
-        Project.save_project_redmine(params)
+        @project = Project.new(set_params)  
         if @project.save
+          Project.save_project_redmine(params)
           render json: @project.aliased, status: :created
         else
           render json: { error: @project.errors }, status: :unprocessable_entity
@@ -14,7 +14,7 @@ module Api
       private 
         # Only allow a trusted parameter "white list" through.
         def set_params
-          @project_params = params.permit(:name, :identifier, :description, :is_public, :inherit_members, :tracker_ids)
+          params.require(:project).permit(:name, :identifier, :description, :is_public, :inherit_members, :tracker_ids)
         end
     end 
   end
